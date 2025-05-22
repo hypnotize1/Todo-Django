@@ -10,32 +10,49 @@
 </head>
 <body class="container py-4">
 
+    <!-- پیام‌ها (Messages) -->
+    {% if messages %}
+      <div class="mb-3">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- هدر -->
     <header class="mb-4">
         <h1 class="text-center">📝 Todo Django App</h1>
         <div class="d-flex justify-content-end align-items-center gap-2">
             {% if user.is_authenticated %}
                 <span class="me-2">Hi {{ user.username }}!</span>
-                <form method="POST" action="{% url 'accounts:logout' %}">
+                <a href="{% url 'accounts:password_reset' %}" class="btn btn-outline-warning btn-sm">Change Password</a>
+                <form method="POST" action="{% url 'accounts:logout' %}" class="d-inline">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
                 </form>
             {% else %}
                 <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary btn-sm">Login</a>
                 <a href="{% url 'accounts:signup' %}" class="btn btn-outline-success btn-sm">Sign Up</a>
+                <a href="{% url 'accounts:password_reset' %}" class="btn btn-outline-secondary btn-sm">Reset Password</a>
             {% endif %}
         </div>
         <hr>
     </header>
 
+    <!-- محتوای صفحات دیگر -->
     {% block content %}
     {% endblock %}
 
+    <!-- فوتر -->
     <footer class="text-center mt-5">
         <hr>
         <p class="text-muted">Made with Django 🧡</p>
     </footer>
 
-    <!-- Bootstrap JS (optional) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YsKPDL/QzGv9svvVFD1d95dxOJhJhEjqM5W9FuXnYEl+qJxPzkx1la1rI3j93tBt"
             crossorigin="anonymous"></script>

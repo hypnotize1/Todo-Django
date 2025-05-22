@@ -31,7 +31,7 @@ class TaskCreation(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        messages.success(self.request, "Task created successfully!")
+        messages.success(self.request, "Task created successfully!", 'success')
         return super().form_valid(form)
 
 
@@ -42,7 +42,7 @@ class TaskUpdate(UpdateView):
     success_url = reverse_lazy('tasks:task_list')
 
     def form_valid(self, form):
-        messages.success(self.request, "Task updated successfully!")
+        messages.success(self.request, "Task updated successfully!", 'success')
         return super().form_valid(form)
 
 
@@ -52,5 +52,5 @@ class TaskDelete(DeleteView):
     success_url = reverse_lazy('tasks:task_list')
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request, "Task deleted successfully!")
+        messages.success(self.request, "Task deleted successfully!", 'success')
         return super().delete(request, *args, **kwargs)
