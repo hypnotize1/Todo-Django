@@ -40,6 +40,8 @@ class TaskUpdate(UpdateView):
     form_class = TaskForm
     template_name = 'tasks/update_form.html'
     success_url = reverse_lazy('tasks:task_list')
+    paginate_by = 5
+
 
     def form_valid(self, form):
         messages.success(self.request, "Task updated successfully!", 'success')
