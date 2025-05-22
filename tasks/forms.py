@@ -8,3 +8,14 @@ class TaskForm(forms.ModelForm):
         widgets = {
             'due_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
+
+
+class TaskSearchForm(forms.Form):
+    q = forms.CharField(
+        label='Search',
+        required=False,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Search tasks...',
+            'class': 'form-control'
+        })
+    )
