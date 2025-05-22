@@ -6,7 +6,11 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ['title', 'description', 'due_date', 'priority', 'is_complete']
         widgets = {
-            'due_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'due_date': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
+            'priority': forms.Select(attrs={'class': 'form-control'}),
+            'is_complete': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
 
