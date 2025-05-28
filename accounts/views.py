@@ -22,8 +22,9 @@ class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
     redirect_authenticated_user = True
     authentication_form = CustomLoginForm
-    success_url = reverse_lazy('tasks:task_list')
-
+    
+    def get_success_url(self):
+        return reverse_lazy('tasks:task_list'
 
 class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('accounts:login')
