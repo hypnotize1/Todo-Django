@@ -127,12 +127,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'tasks:task_list'
 LOGOUT_REDIRECT_URL = 'accounts:login'
+# settings for resetting password by email
+from decouple import config 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'mohammadseyfipc@gmail.com'
-EMAIL_HOST_PASSWORD = 'liauqyqslytedxhm'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = EMAIL_HOST_USER
 EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = 'mohammadseyfipc@gmail.com'
